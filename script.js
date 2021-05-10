@@ -1,5 +1,4 @@
 const content = document.getElementById('content');
-const timer = document.getElementById('timer');
 
 let nama, val;
 const url_string = document.URL;
@@ -23,6 +22,7 @@ document.querySelector(".tombol").addEventListener('click', function() {
         	title: 'Masukin nama kamu dulu',
 	          input: 'text',
 	          inputLabel: '',
+            showCancelButton: true,
 	          inputValidator: (value) => {
 	            if (!value) {
 	              return 'Isi dulu dong!'
@@ -30,89 +30,92 @@ document.querySelector(".tombol").addEventListener('click', function() {
 	              nama = value;
 	            }
 	          }
-        }).then(function() {
-        	Swal.fire("Hi " + nama, sender + " ada pertanyaan nih buat kamu").then( function() {
-        		const pertanyaan = Swal.fire({
-        			title: `Kalau ${sender} suka sama ${nama} boleh gak? :D`,
-        			type: 'question',
-		            showDenyButton: true,
-		            showCancelButton: false,
-		            confirmButtonText: `Boleh :)`,
-		            denyButtonText: `Gak`
-        		}).then((result) => {
-        			if (result.isConfirmed) {
-        				Swal.fire({
-        					title: `Kalo ${nama} suka gak sama ${sender}?`,
-        					type: 'question',
-        					showDenyButton: true,
-        					showCancelButton: false,
-        					confirmButtonText: 'Suka',
-        					denyButtonText: 'Gak'
-        				}).then((result) => {
-        					if (result.isConfirmed) {
-        						Swal.fire({
-        							title: 'Kalo gitu mau gak kita jadian? :D',
-        							type: 'question',
-        							showDenyButton: true,
-        							showCancelButton: false,
-        							confirmButtonText: 'Mauuu',
-        							denyButtonText: 'Gak!'
-        						}).then((result) => {
-        							if (result.isConfirmed) {
-        								Swal.fire({
-        									title: 'Bener nih kita jadian :D',
-        									type: 'question',
-        									confirmButtonText: 'iyaaa'
-        								}).then( function() {
-        									Swal.fire({
-        										title: 'Fiks ya kita jadian :D',
-        										type: 'question',
-        										confirmButtonText: 'iyaaaa Bawel!'
-        									}).then( function() {
-        										const Toast = Swal.mixin({
-        											toast: true,
-        											position: 'center',
-        											showConfirmButton: true
-        										});
+        }).then((result) => {
+          if (result.isConfirmed) {
 
-        										Toast.fire({
-        											type: 'success',
-        											title: 'Coba klik ikon hati di paling bawah dong'
-        										})
-        									})
-        								})
-        							} else if (result.isDenied) {
-        								Swal.fire({
-        									title: 'Kenapa gak mau?',
-									          input: 'text',
-									          inputPlaceholder: 'contoh: udah punya pacar, atau alesan lainnya',
-									          showCancelButton: true,
-									          inputValidator: (value) => {
-									            if (!value) {
-									              return 'Isi dulu dong!'
-									            } else {
-									              tolak = value;
-									            }
-									          }
-        								}).then((result) => {
-        									if (result.isConfirmed) {
-        										Swal.fire({
-        											title: `eummm.. ya deh kalo ${tolak}, makasih ya waktunya :)`,
-        											confirmButtonText: 'iya'
-        										})
-        									}
-        								})
-        							}
-        						})
-        					} else if (result.isDenied) {
-        						Swal.fire('eumm... yauda makasih waktunya yaa :)');
-        					}
-        				})
-        			} else if (result.isDenied) {
-        				Swal.fire('eumm.. yauda kalo gak boleh :)');
-        			}
-        		})
-        	});
+          Swal.fire("Hi " + nama + ", " + sender + " ada pertanyaan nih buat kamu", "", "question").then( function() {
+            const pertanyaan = Swal.fire({
+              title: `Kalau ${sender} suka sama ${nama} boleh gak? :D`,
+              icon: 'question',
+                showDenyButton: true,
+                showCancelButton: false,
+                confirmButtonText: `Boleh :)`,
+                denyButtonText: `Gak`
+            }).then((result) => {
+              if (result.isConfirmed) {
+                Swal.fire({
+                  title: `Kalo ${nama} suka gak sama ${sender}?`,
+                  icon: 'question',
+                  showDenyButton: true,
+                  showCancelButton: false,
+                  confirmButtonText: 'Suka',
+                  denyButtonText: 'Gak'
+                }).then((result) => {
+                  if (result.isConfirmed) {
+                    Swal.fire({
+                      title: 'Kalo gitu mau gak kita jadian? :D',
+                      icon: 'question',
+                      showDenyButton: true,
+                      showCancelButton: false,
+                      confirmButtonText: 'Mauuu',
+                      denyButtonText: 'Gak!'
+                    }).then((result) => {
+                      if (result.isConfirmed) {
+                        Swal.fire({
+                          title: 'Bener nih kita jadian? :D',
+                          icon: 'question',
+                          confirmButtonText: 'iyaaa'
+                        }).then( function() {
+                          Swal.fire({
+                            title: 'Fiks ya kita jadian :D',
+                            icon: 'success',
+                            confirmButtonText: 'iyaaaa Bawel!'
+                          }).then( function() {
+                            const Toast = Swal.mixin({
+                              toast: true,
+                              position: 'center',
+                              showConfirmButton: true
+                            });
+
+                            Toast.fire({
+                              icon: 'warning',
+                              title: 'Coba klik ikon hati di paling bawah dong'
+                            })
+                          })
+                        })
+                      } else if (result.isDenied) {
+                        Swal.fire({
+                          title: 'Kenapa gak mau?',
+                            input: 'text',
+                            inputPlaceholder: 'contoh: udah punya pacar, atau alesan lainnya',
+                            showCancelButton: true,
+                            inputValidator: (value) => {
+                              if (!value) {
+                                return 'Isi dulu dong!'
+                              } else {
+                                tolak = value;
+                              }
+                            }
+                        }).then((result) => {
+                          if (result.isConfirmed) {
+                            Swal.fire({
+                              title: `eummm.. ya deh kalo ${tolak}, makasih ya waktunya :)`,
+                              confirmButtonText: 'iya'
+                            })
+                          }
+                        })
+                      }
+                    })
+                  } else if (result.isDenied) {
+                    Swal.fire('eumm... yauda makasih waktunya yaa :)');
+                  }
+                })
+              } else if (result.isDenied) {
+                Swal.fire('eumm.. yauda kalo gak boleh :)');
+              }
+            })
+          });
+          }
         })
 });
 
@@ -122,9 +125,25 @@ document.querySelector('.hati').addEventListener('click', function () {
   const btn = document.querySelector('.tombol');
   teks.classList.remove('d-none')
   btn.classList.add('d-none')
-  console.log(teks);
-  console.log(btn);
 })
+
+var animateButton = function(e) {
+
+  e.preventDefault;
+  //reset animation
+  e.target.classList.remove('animate');
+
+  e.target.classList.add('animate');
+  setTimeout(function(){
+    e.target.classList.remove('animate');
+  },700);
+};
+
+var classname = document.getElementsByClassName("confetti-button");
+
+for (var i = 0; i < classname.length; i++) {
+  classname[i].addEventListener('click', animateButton, false);
+}
 
 'use strict';
 

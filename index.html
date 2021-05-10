@@ -4,7 +4,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1 shrink-to-fit=no">
-
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<!-- Bootstrap CSS -->
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link rel="stylesheet" href="dist/sweetalert2.min.css">
@@ -18,14 +18,17 @@
 
 <body>
 
-	<div class="row">
+	<div class="css-script-ads" style="margin-top:50px" align="center">
 		<div class="col-lg text-center kotak">
-			<button type="button" class="btn btn-lg btn-primary tombol py-4 px-5 shadow">Klik Disini</button>
-			<h1 id="teks" class="d-none animate__animated animate__pulse">I LOVE YOU <i
+			<button type="button" class="confetti-button btn btn-lg btn-primary tombol py-4 px-5 shadow">Klik Disini</button>
+
+      <div id="timer">
+			<h1 id="teks" class="d-none animate__animated animate__pulse align-center">I LOVE YOU <i
             class="fas fa-heart text-danger animate__animated animate__heartBeat animate__repeat-3"></i></h1>
+      </div>
 		</div>
 	</div>
-
+  
 	<form action="" method="get">
     	<input type="hidden" name="by">
   	</form>
@@ -34,8 +37,8 @@
   <footer class="page-footer font-small blue fixed-bottom">
 
     <!-- Copyright -->
-    <div id="made" class="footer-copyright text-center py-3 text-secondary"><small> Made with
-        <i class="fas fa-heart text-danger animate__animated animate__bounce animate__repeat-3 hati"></i> by <a target="_blank" class="text-decoration-none text-secondary" id="credit"></a>
+    <div id="made" class="footer-copyright text-center text-secondary"><small> Made with
+        <i class="fas fa-heart text-danger animate__animated animate__bounce animate__repeat-3 hati"></i> by <a target="_blank" class="text-decoration-none text-secondary" id="credit"></a><p id="waktu" class="footer-copyright text-secondary"></p>
       </small>
     </div>
     <!-- Copyright -->
